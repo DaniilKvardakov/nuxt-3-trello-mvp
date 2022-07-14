@@ -5,8 +5,6 @@ interface Workspace {
     id: Number
     name: String
 }
-
-
 const newWorkSpaceName = ref("");
 const workspaceList = ref<Workspace[]>([]);
 const createWorkSpace = () => {
@@ -24,7 +22,7 @@ const createWorkSpace = () => {
     <h1> Home page </h1>
     <h2> Recently viewed</h2>
     <h2> Workspaces </h2>
-    <input type="text" v-model="newWorkSpaceName">
+    <input type="text" v-model="newWorkSpaceName" @keyup.enter="createWorkSpace">
     <button @click.prevent = "createWorkSpace">Create a Workspace</button>
     <ul class="workspace-list">
         <li 
