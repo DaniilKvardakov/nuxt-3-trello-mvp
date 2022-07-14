@@ -15,6 +15,7 @@ const createWorkSpace = () => {
             name: newWorkSpaceName.value,
         }
     )
+    newWorkSpaceName.value = "";
 }
 </script>
 
