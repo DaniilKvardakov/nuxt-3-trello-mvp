@@ -28,6 +28,7 @@ import { workspaceList } from "../../store/global"
                 )
             },
             createCard(column) {
+                if(column.newItemName === '') return false;
                 column.items.push({
                     id: 123,
                     name: column.newItemName
