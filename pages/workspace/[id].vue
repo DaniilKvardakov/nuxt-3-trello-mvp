@@ -9,9 +9,22 @@ import { workspaceList } from "../../store/global"
         },
         data: () =>  ({
            workspaceName: '',
+           board: {
+            name: 'Cherries',
+            columns: []
+           }
         }),
         mounted() {
             this.workspaceName = this.workspaceList.find((workspace) => workspace.id === Number(this.$route.params.id)).name;
+        },
+        methods: {
+            createColumn() {
+                this.board.columns.push(
+                    {
+                        items: []
+                    }
+                )
+            }
         }
     }
 </script>
@@ -19,11 +32,25 @@ import { workspaceList } from "../../store/global"
 <template>
         <div>
             <h1>{{ workspaceName }} Workspace (#{{ $route.params.id }})</h1>
-            <p>
-                {{ $route.params.id }}
-            </p>
+            <section>
+                <h2> {{ board.name }} </h2>
+                <button @click="createColumn">Create Column</button>
+                <div class="column-grid">
+                    <ul class="board-column" v-for="(column, index) in board.columns" :key="column[index]"></ul>
+                </div>
+            </section>
+            
         </div>
 </template>
 <style>
-
+    .column-grid {
+        display: grid;
+        grid-template-columns: repeat(v-bind(board.columns.length), 1fr);
+    }
+    .board-column{
+        border: 1px solid #222;
+        height: 80vh;
+        width: 100px;
+        margin-right: 1rem;
+    }
 </style>
