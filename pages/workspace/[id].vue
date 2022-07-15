@@ -69,7 +69,7 @@ import { workspaceList } from "../../store/global"
     .board-column{
         border: 1px solid #222;
         height: 80vh;
-        width: 100px;
         margin-right: 1rem;
     }
+   
 </style>
