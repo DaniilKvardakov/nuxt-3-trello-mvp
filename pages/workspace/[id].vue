@@ -10,7 +10,6 @@ import { workspaceList } from "../../store/global"
         data: () =>  ({
             workspaceName: '',
             board: {
-            name: 'Cherries',
             columns: [],
             newCardItem: '',
            }
