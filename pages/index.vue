@@ -1,12 +1,9 @@
-<script lang="ts" setup>
+<script setup>
 import { ref } from "vue";
+import { workspaceList } from '../store/global'
 
-interface Workspace {
-    id: Number
-    name: String
-}
+
 const newWorkSpaceName = ref("");
-const workspaceList = ref<Workspace[]>([]);
 const createWorkSpace = () => {
     const randomId = Math.floor(Math.random() * 100);
     workspaceList.value.push(
@@ -20,6 +17,7 @@ const createWorkSpace = () => {
 </script>
 
 <template >
+<div>
     <h1> Home page </h1>
     <h2> Recently viewed</h2>
     <h2> Workspaces </h2>
@@ -30,9 +28,12 @@ const createWorkSpace = () => {
         v-for="workspace in workspaceList" 
         :key="workspace.id" class="workspace-card"
         >
-        {{ workspace.id }} : {{ workspace.name }}
+       <nuxt-link :to="`/workspace/${workspace.id}`">
+            {{ workspace.id }} : {{ workspace.name }}
+       </nuxt-link>
         </li>
     </ul>
+</div>
 </template>
 
 <style>
