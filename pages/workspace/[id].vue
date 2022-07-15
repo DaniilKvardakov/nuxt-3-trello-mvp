@@ -8,10 +8,11 @@ import { workspaceList } from "../../store/global"
             }
         },
         data: () =>  ({
-           workspaceName: '',
-           board: {
+            workspaceName: '',
+            board: {
             name: 'Cherries',
-            columns: []
+            columns: [],
+            newCardItem: '',
            }
         }),
         mounted() {
@@ -24,6 +25,16 @@ import { workspaceList } from "../../store/global"
                         items: []
                     }
                 )
+            },
+            createCard(column) {
+                if(this.newCardItem === '') {
+                    return false;
+                }
+                column.items.push({
+                    id: 123,
+                    name: this.newCardItem
+                }),
+                this.newCardItem = '';
             }
         }
     }
@@ -36,7 +47,15 @@ import { workspaceList } from "../../store/global"
                 <h2> {{ board.name }} </h2>
                 <button @click="createColumn">Create Column</button>
                 <div class="column-grid">
-                    <ul class="board-column" v-for="(column, index) in board.columns" :key="column[index]"></ul>
+                    <section class="board-column" v-for="(column, index) in board.columns" :key="column[index]">
+                        <input type="text" v-model="newCardItem">
+                        <button @click="createCard(column)">Create a card</button>
+                        <ul >
+                                <li v-for="item in column.items" :key="item.id">
+                                    {{ item.name }}
+                                </li>
+                        </ul>
+                    </section>
                 </div>
             </section>
             
