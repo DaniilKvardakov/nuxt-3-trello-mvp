@@ -47,7 +47,7 @@ import { workspaceList } from "../../store/global"
                 <button @click="createColumn">Create Column</button>
                 <div class="column-grid">
                     <section class="board-column" v-for="(column, index) in board.columns" :key="column[index]">
-                        <input type="text" v-model="column.newItemName">
+                        <input type="text" v-model="column.newItemName" @keyup.enter="createCard(column)">
                         <button @click="createCard(column)">Create a card</button>
                         <ul >
                                 <li v-for="item in column.items" :key="item.id">
